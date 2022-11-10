@@ -49,6 +49,13 @@ async function run() {
             const result = await review.insertOne(reviewId);
             res.send(result)
         })
+
+        app.get('/reviews', async (req, res) => {
+            const query = {};
+            const cursor = review.find(query);
+            const userReview = await cursor.toArray();
+            res.send(userReview)
+        })
     }
 
     finally {
